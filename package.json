@@ -1,34 +1,37 @@
 {
-  "name": "kubeforge",
+  "name": "harborguard",
   "version": "1.0.0",
-  "description": "kubeforge is a free and open-source landing page built with Tailwind CSS and Flowbite for SaaS and product websites.",
+  "description": "Harbor Guard is a comprehensive container security scanning platform that provides an intuitive web interface for managing and visualizing security assessments of Docker images.",
   "main": "index.js",
   "scripts": {
+    "build-css": "npx tailwindcss -i ./input.css -o ./output.css --watch",
+    "build": "npx tailwindcss -i ./input.css -o ./output.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/themesberg/kubeforge.git"
+    "url": "git+https://github.com/HarborGuard/HarborGuard.git"
   },
   "keywords": [
-    "landing",
-    "page",
-    "tailwind",
-    "tailwind",
-    "css",
-    "flowbite",
-    "responsive",
-    "html",
-    "css",
-    "javascript",
-    "design"
+    "container",
+    "security",
+    "scanning",
+    "docker",
+    "vulnerability",
+    "trivy",
+    "grype",
+    "sbom",
+    "devops",
+    "cybersecurity",
+    "harbor",
+    "guard"
   ],
-  "author": "Themesberg",
+  "author": "HarborGuard",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/themesberg/kubeforge/issues"
+    "url": "https://github.com/HarborGuard/HarborGuard/issues"
   },
-  "homepage": "https://github.com/themesberg/kubeforge#readme",
+  "homepage": "https://github.com/HarborGuard/HarborGuard#readme",
   "devDependencies": {
     "tailwindcss": "^3.1.4"
   },
