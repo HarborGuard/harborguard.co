@@ -2,284 +2,578 @@
 <html lang="en">
 
 <head>
-    <link rel="canonical" href="https://Harbor Guard.co" />
+    <link rel="canonical" href="https://harborguard.co">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harbor Guard - Securing containers, one scan at a time.</title>
+    <title>HarborGuard - Container Security Scanning Platform</title>
 
     <!-- Meta SEO -->
-    <meta name="title" content="Harbor Guard - Securing containers, one scan at a time.">
+    <meta name="title" content="HarborGuard - Comprehensive Container Security Scanner">
     <meta name="description"
-        content="A comprehensive container security scanning platform with an intuitive web interface for managing Docker image security assessments.">
+        content="HarborGuard is a comprehensive container security scanning platform that provides an intuitive web interface for managing and visualizing security assessments of Docker images using multiple security tools.">
+    <meta name="keywords"
+        content="container security, Docker security, vulnerability scanning, Trivy, Grype, Syft, Dockle, OSV Scanner, image analysis, DevSecOps">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
-    <meta name="author" content="harborguard">
+    <meta name="author" content="HarborGuard Team">
 
     <!-- Social media share -->
-    <meta property="og:title" content="Harbor Guard - Securing containers, one scan at a time.">
-    <meta property="og:site_name" content="harborguard">
-    <meta property="og:url" content="https://Harbor Guard.co">
+    <meta property="og:title" content="HarborGuard - Comprehensive Container Security Scanner">
+    <meta property="og:site_name" content="HarborGuard">
+    <meta property="og:url" content="https://harborguard.co">
     <meta property="og:description"
-        content="A comprehensive container security scanning platform that integrates multiple security tools with advanced visualization and reporting capabilities.">
-    <meta property="og:type" content="">
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@harborguard" />
-    <meta name="twitter:creator" content="@harborguard" />
+        content="Unified container security scanning platform integrating Trivy, Grype, Syft, and more. Visualize and manage Docker image vulnerabilities with ease.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://harborguard.co/images/feature-2.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@harborguard">
+    <meta name="twitter:creator" content="@harborguard">
+    <meta name="twitter:title" content="HarborGuard - Container Security Scanner">
+    <meta name="twitter:description"
+        content="Comprehensive container security scanning with multi-tool integration. Visualize Docker image vulnerabilities effectively.">
+    <meta name="twitter:image" content="https://harborguard.co/images/feature-2.png">
+
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- GitHub Buttons -->
+    <link rel="preconnect" href="https://buttons.github.io">
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <!-- Mermaid for flowcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: 'rgba(102, 126, 234, 0.2)',
+                primaryTextColor: '#ffffff',
+                primaryBorderColor: 'rgba(102, 126, 234, 0.8)',
+                lineColor: 'rgba(255, 255, 255, 0.3)',
+                secondaryColor: 'rgba(118, 75, 162, 0.2)',
+                tertiaryColor: 'rgba(16, 185, 129, 0.2)',
+                background: 'rgba(255, 255, 255, 0.05)',
+                mainBkg: 'rgba(255, 255, 255, 0.08)',
+                secondBkg: 'rgba(255, 255, 255, 0.05)',
+                tertiaryBkg: 'rgba(16, 185, 129, 0.1)',
+                textColor: '#ffffff',
+                labelTextColor: '#ffffff',
+                nodeTextColor: '#ffffff',
+                edgeLabelBackground: 'transparent',
+                clusterBkg: 'rgba(255, 255, 255, 0.03)',
+                clusterBorder: 'rgba(255, 255, 255, 0.2)',
+                defaultLinkColor: 'rgba(255, 255, 255, 0.4)',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                fontSize: '14px',
+            },
+            flowchart: {
+                curve: 'basis',
+                padding: 20,
+                nodeSpacing: 50,
+                rankSpacing: 70,
+                diagramPadding: 20,
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+
+    <!-- Custom CSS for additional styling -->
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated dots canvas */
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-recommended {
+            position: relative;
+            border: 2px solid #3273dc;
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-gradient {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        /* Ensure hero content stays above canvas */
+        .hero-body {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
 
     <!-- Favicon -->
     <link rel="manifest" href="/site.webmanifest">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#333">
-    <link href="./output.css" rel="stylesheet">
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <meta name="theme-color" content="#ffffff">
 </head>
 
-<body style="background-color: #16171b;">
-    <header class="fixed z-10 w-full" style="background-color: #16171b; border-bottom: 1px solid #1a1b23;">
-        <nav style="background-color: #16171b;" class="py-2.5">
-            <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
-                <a href="#" class="flex items-center">
-                    <img src="./images/logo.png" class="h-6 mr-3 sm:h-9" alt="Harbor Guard Logo" />
-                    <span class="self-center text-xl font-semibold whitespace-nowrap text-slate-100">Harbor Guard</span>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar is-white is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <img src="./images/icon.svg" alt="HarborGuard Logo" height="28">
+                    <span class="ml-2 is-size-5">HarborGuard</span>
                 </a>
-                <div class="flex items-center lg:order-2">
-
-                    <div class="hidden mt-2 sm:inline-block">
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <div class="navbar-item" style="display: flex; align-items: center; margin-top: 6px;">
                         <a class="github-button" href="https://github.com/HarborGuard/HarborGuard" data-size="large"
-                            data-icon="octicon-star" data-show-count="true"
-                            aria-label="Star HarborGuard on GitHub">Star</a>
+                            aria-label="Star HarborGuard on GitHub" data-icon="octicon-star"
+                            data-show-count="true">Star</a>
                     </div>
-
-                    <button data-collapse-toggle="mobile-menu-2" type="button"
-                        class="inline-flex items-center p-2 ml-1 text-sm text-slate-400 rounded-lg lg:hidden hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-600"
-                        aria-controls="mobile-menu-2" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg class="w-6 h-6 text-slate-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        <svg class="hidden w-6 h-6 text-slate-400" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Start block -->
-    <section class="flex" style="min-height: 700px; background-color: #16171b;">
-        <div
-            class="flex flex-grow justify-center max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
-            <div class="mr-auto place-self-center lg:col-span-7">
-                <h1
-                    class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl text-slate-100">
-                    Secure Your <br><span
-                        class="bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">Containers</span>.
-                </h1>
-                <p class="max-w-2xl mb-3 font-light text-slate-300 lg:mb-4 md:text-lg lg:text-xl">
-                    Harbor Guard is a comprehensive container security scanning platform that provides an intuitive web
-                    interface for managing and visualizing security assessments of Docker images.</p>
-                <br>
-                <p class="max-w-2xl mb-2 font-light text-slate-300 lg:mb-2 md:text-lg lg:text-xl">Get
-                    started with:</p>
-                <pre class="bg-slate-900 text-sm text-slate-200 !rounded-md px-4 py-3 mb-6 border border-slate-700 overflow-x-auto"
-                    style="border-radius: 8px; font-family: 'JetBrains Mono', 'Fira Code', monospace;">
-    <code class="text-teal-400">docker run -p 3000:3000 ghcr.io/harborguard/harborguard:latest</code>
-</pre>
-                <div class="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-                    <a href="https://github.com/HarborGuard/HarborGuard"
-                        class="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center text-slate-100 border border-slate-600 rounded-lg sm:w-auto hover:bg-slate-800 focus:ring-4 focus:ring-slate-600 transition-colors">
-                        <svg class="w-4 h-4 mr-2 text-white" xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 496 512"><!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) -->
-                            <path
-                                d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
-                        </svg> View on GitHub
-                    </a>
-                </div>
-            </div>
-            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex w-full pl-2">
-                <div class="w-full self-start flex justify-center items-center">
-                    <img src="./images/hero.png" class="w-full h-auto max-h-full rounded-lg" alt="hero image" />
                 </div>
             </div>
         </div>
-    </section>
-    <!-- End block -->
+    </nav>
 
-    <!-- Start block -->
-    <section style="background-color: #1a1b23;">
-        <div class="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
-            <!-- Row -->
-            <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-                <div class="text-slate-300 sm:text-lg">
-                    <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-slate-100">Multi-Tool
-                        <span
-                            class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Security
-                            Scanning</span>
-                    </h2>
-                    <p class="mb-8 font-light lg:text-xl text-slate-300">Harbor Guard integrates multiple
-                        industry-standard security scanning tools including Trivy, Grype, Syft, Dockle, OSV Scanner, and
-                        Dive into one unified platform.</p>
-                    <!-- List -->
-                    <ul role="list" class="pt-8 space-y-5 border-t border-slate-700 my-7">
-                        <li class="flex space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-teal-400" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-base font-medium leading-tight text-slate-100">Vulnerability
-                                detection and classification</span>
-                        </li>
-                        <li class="flex space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-teal-400" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-base font-medium leading-tight text-slate-100">Interactive
-                                vulnerability charts</span>
-                        </li>
-                        <li class="flex space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-teal-400" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-base font-medium leading-tight text-slate-100">SBOM
-                                generation</span>
-                        </li>
-                    </ul>
-                    <p class="mb-8 font-light lg:text-xl text-slate-300">Secure your container images and understand
-                        what vulnerabilities exist in your Docker environments.</p>
-                </div>
-                <img class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src="./images/feature-1.png"
-                    alt="dashboard feature image">
-            </div>
-            <!-- Row -->
-            <div class="items-center gap-8 pt-20 lg:grid lg:grid-cols-2 xl:gap-16">
-                <img class="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src="./images/feature-2.png"
-                    alt="feature image 2">
-                <div class="text-slate-300 sm:text-lg">
-                    <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-slate-100">Advanced
-                        <span
-                            class="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Visualization
-                            & Reporting</span>
-                    </h2>
-                    <p class="mb-8 font-light lg:text-xl text-slate-300">Interactive scatter plots, historical tracking,
-                        and comprehensive report export capabilities with real-time progress monitoring.</p>
-                    <!-- List -->
-                    <ul role="list" class="pt-8 space-y-5 border-t border-slate-700 my-7">
-                        <li class="flex space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-teal-400" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-base font-medium leading-tight text-slate-100">Real-time
-                                Scan Progress</span>
-                        </li>
-                        <li class="flex space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-teal-400" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-base font-medium leading-tight text-slate-100">Report
-                                Export (JSON/ZIP)</span>
-                        </li>
-                        <li class="flex space-x-3">
-                            <!-- Icon -->
-                            <svg class="flex-shrink-0 w-5 h-5 text-teal-400" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-base font-medium leading-tight text-slate-100">Historical
-                                Scan Comparison</span>
-                        </li>
-                    </ul>
-                    <p class="font-light lg:text-xl text-slate-300">Secure your containers with enterprise-ready
-                        features and comprehensive vulnerability management.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End block -->
+    <!-- Hero Section -->
+    <section class="hero is-medium hero-gradient has-text-white" style="margin-top: 52px;">
+        <canvas id="particles-canvas"></canvas>
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column is-6">
+                        <h1 class="title is-1 has-text-white" style="margin-bottom: 4rem;">
+                            Image Security <span style="font-style: italic;">Simplified</span>
+                        </h1>
+                        <p class="subtitle is-4 has-text-white">
+                            HarborGuard is a unified security scanning platform that provides deep vulnerability
+                            analysis and visualization for Docker images using industry-leading security tools.
+                        </p>
+                        <p class="subtitle is-5 has-text-white mb-4">Get started with:</p>
+                        <div class="box has-background-dark">
+                            <code
+                                class="has-background-dark has-text-white">docker run -p 3000:3000 ghcr.io/harborguard/harborguard:latest</code>
+                        </div>
+                        <div class="buttons">
+                            <a href="https://github.com/HarborGuard/HarborGuard" class="button is-white is-small">
+                                <span>View on GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column is-6">
+                        <div style="display: flex; flex-direction: column;">
+                            <span style="padding-left: 16px;">Without HarborGuard</span>
+                            <div class="mermaid"
+                                style="background: transparent; filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3)); ">
+                                flowchart TB
+                                subgraph WITHOUT [" "]
+                                A1[CVE Disclosed]:::danger
+                                A2[Manual Triage]
+                                A3{Decision}:::decision
+                                A4[Manual Fix]
+                                A5[Unpatched]:::danger
+                                A6[Wait]
+                                A7[Vendor Patched]:::success
 
-    <!-- Start block -->
-    <section class="pt-20" style="background-color: #16171b;">
-        <div class="max-w-screen-xl px-4 pb-8 mx-auto lg:pb-24 lg:px-6 ">
-            <h2 class="mb-6 text-3xl font-extrabold tracking-tight text-center text-slate-100 lg:mb-8 lg:text-3xl">
-                Frequently asked questions</h2>
-            <div class="max-w-screen-md mx-auto">
-                <div id="accordion-flush" data-accordion="collapse" data-active-classes="text-slate-100"
-                    data-inactive-classes="text-slate-400">
-                    <h3 id="accordion-flush-heading-1">
-                        <button type="button"
-                            class="flex items-center justify-between w-full py-5 font-medium text-left text-slate-100 border-b border-slate-700"
-                            data-accordion-target="#accordion-flush-body-1" aria-expanded="true"
-                            aria-controls="accordion-flush-body-1">
-                            <span>What security tools does Harbor Guard integrate?</span>
-                            <svg data-accordion-icon="" class="w-6 h-6 rotate-180 shrink-0 text-slate-300" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    </h3>
-                    <div id="accordion-flush-body-1" class="" aria-labelledby="accordion-flush-heading-1">
-                        <div class="py-5 border-b border-slate-700">
-                            <p class="mb-2 text-slate-300">Harbor Guard integrates Trivy, Grype, Syft, Dockle, OSV
-                                Scanner, and Dive - providing comprehensive vulnerability scanning, SBOM generation, and
-                                container best practices validation.</p>
+                                A1 --> A2
+                                A2 --> A3
+                                A3 --> A4
+                                A3 --> A5
+                                A3 --> A6
+                                A4 --> A7
+                                A5 -.-> A7
+                                A6 -.-> A7
+                                end
+
+                                classDef default color:#f1f5f9
+                                classDef danger fill:#dc2626,stroke:#991b1b,color:#ffffff,stroke-width:1px
+                                classDef decision fill:#2563eb,stroke:#1d4ed8,color:#ffffff,stroke-width:1px
+                                classDef success fill:#16a34a,stroke:#15803d,color:#ffffff,stroke-width:1px
+                            </div>
+                            <span style="padding-left: 16px; margin-top: 30px">With HarborGuard</span>
+                            <div class="mermaid"
+                                style="background: transparent; filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3)); ">
+
+                                flowchart TB
+                                subgraph WITH [" "]
+                                B1[CVE Disclosed]:::danger
+                                B2[Auto-Triage]:::highlight
+                                B3[Auto-Patch]:::highlight
+                                B4[Auto-Ignore]:::highlight
+                                B5[Track]:::highlight
+                                B6[Vendor Patched]:::success
+
+                                B1 --> B2
+                                B2 --> B3
+                                B2 --> B4
+                                B2 --> B5
+                                B3 --> B6
+                                B4 -.-> B6
+                                B5 -.-> B6
+                                end
+
+                                classDef default color:#f1f5f9
+                                classDef danger fill:#dc2626,stroke:#991b1b,color:#ffffff,stroke-width:1px
+                                classDef highlight fill:#22c55e,stroke:#16a34a,color:#ffffff,stroke-width:1px
+                                classDef success fill:#16a34a,stroke:#15803d,color:#ffffff,stroke-width:1px
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End block -->
 
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <!-- CVE Patching Feature -->
+            <div class="columns is-vcentered" style="margin-bottom: 100px; margin-top: 60px;">
+                <div class="column is-6">
+                    <figure class="image">
+                        <img src="./images/feature-1.png" alt="HarborGuard CVE patching interface">
+                    </figure>
+                </div>
+                <div class="column is-6">
+                    <h2 class="title is-3">Intelligent CVE Patching</h2>
+                    <p class="subtitle">
+                        Automatically identify and remediate vulnerabilities with smart patching recommendations and
+                        automated container image rebuilding.
+                    </p>
+                    <div class="content">
+                        <ul>
+                            <li>✓ Automated patch recommendations</li>
+                            <li>✓ Base image update detection</li>
+                            <li>✓ Zero-day vulnerability response</li>
+                        </ul>
+                    </div>
+                    <p>Reduce your attack surface by automatically identifying fixable CVEs and providing actionable
+                        remediation steps for your container images.</p>
+                </div>
+            </div>
 
-    <footer style="background-color: #1a1b23;">
-        <div class="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
+            <!-- Multi-Tool Scanning Feature -->
+            <div class="columns is-vcentered" style="margin-bottom: 100px; margin-top: 60px;">
+                <div class="column is-6 is-hidden-mobile">
+                    <h2 class="title is-3">Multi-Tool Security Scanning</h2>
+                    <p class="subtitle">
+                        HarborGuard integrates industry-leading security scanners to provide comprehensive vulnerability
+                        detection and analysis for your container images.
+                    </p>
+                    <div class="content">
+                        <ul>
+                            <li>✓ Trivy, Grype, and Syft vulnerability scanning</li>
+                            <li>✓ Interactive vulnerability visualization</li>
+                            <li>✓ Layer-by-layer image analysis with Dive</li>
+                        </ul>
+                    </div>
+                    <p>Get complete visibility into your container security posture with detailed vulnerability reports
+                        and remediation guidance.</p>
+                </div>
+                <div class="column is-6">
+                    <figure class="image">
+                        <img src="./images/feature-2.png" alt="HarborGuard security scanning results">
+                    </figure>
+                </div>
+            </div>
 
-            <hr class="my-6 border-slate-700 sm:mx-auto lg:my-8">
-            <div class="text-center">
-                <a href="#" class="flex items-center justify-center mb-5 text-2xl font-semibold text-slate-100">
-                    <img src="./images/logo.png" class="h-6 mr-3 sm:h-9" alt="Harbor Guard Logo" />
-                    Harbor Guard
-                </a>
-                <span class="block text-sm text-center text-slate-400">© 2025 Harbor Guard™. All
-                    Rights Reserved. Built with <a href="https://flowbite.com"
-                        class="text-teal-400 hover:underline">Flowbite</a> and <a href="https://tailwindcss.com"
-                        class="text-teal-400 hover:underline">Tailwind
-                        CSS</a>.
-                </span>
+            <!-- Vulnerability Database Feature -->
+            <div class="columns is-vcentered mb-12">
+                <div class="column is-6">
+                    <figure class="image">
+                        <img src="./images/feature-1.png" alt="HarborGuard vulnerability database interface">
+                    </figure>
+                </div>
+                <div class="column is-6">
+                    <h2 class="title is-3">Centralized Vulnerability Database</h2>
+                    <p class="subtitle">
+                        Track and manage vulnerabilities across your entire container image inventory with a unified
+                        database that aggregates findings from all security scanners.
+                    </p>
+                    <div class="content">
+                        <ul>
+                            <li>✓ Cross-image vulnerability correlation</li>
+                            <li>✓ Historical vulnerability tracking</li>
+                            <li>✓ Impact analysis across deployments</li>
+                        </ul>
+                    </div>
+                    <p>Gain complete visibility into your security posture with a comprehensive database that tracks
+                        every vulnerability across all your container images in one centralized location.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section section-gradient">
+        <div class="container">
+            <h2 class="title is-2 has-text-centered mb-5">Choose Your Edition</h2>
+            <p class="subtitle has-text-centered mb-6">Start with our free open source edition or unlock enterprise
+                features</p>
+
+            <div class="columns is-centered">
+                <!-- Open Source -->
+                <div class="column is-4">
+                    <div class="box">
+                        <h3 class="title is-4">Open Source</h3>
+                        <p class="subtitle">Perfect for individuals and small teams</p>
+                        <div class="content">
+                            <ul>
+                                <li>✓ All 6 security scanners</li>
+                                <li>✓ Vulnerability Patching</li>
+                                <li>✓ Web-based dashboard</li>
+                                <li>✓ Community support</li>
+                                <li>✓ AGPL-3.0 License</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="column is-4">
+                    <div class="box">
+                        <h3 class="title is-4">Enterprise</h3>
+                        <p class="subtitle">Advanced features for organizations</p>
+                        <div class="content">
+                            <ul>
+                                <li>✓ <strong>Everything in Open Source</strong></li>
+                                <li>✓ SAML/LDAP integration</li>
+                                <li>✓ Priority support & SLA</li>
+                                <li>✓ Commercial license</li>
+                            </ul>
+                        </div>
+                        <a href="mailto:hello@harborguard.co" class="button is-link is-fullwidth">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+
+    <!-- Metrics Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="title is-2 has-text-centered mb-5">Visualization & Metrics</h2>
+            <p class="subtitle has-text-centered mb-6">Gain deep insights into your container security posture</p>
+
+            <div class="columns is-multiline has-text-centered">
+                <div class="column is-3">
+                    <div class="box">
+                        <span class="feature-icon">📊</span>
+                        <h3 class="title is-5">Interactive Charts</h3>
+                        <p>Vulnerability scatterplots and severity tracking</p>
+                    </div>
+                </div>
+                <div class="column is-3">
+                    <div class="box">
+                        <span class="feature-icon">🔍</span>
+                        <h3 class="title is-5">Layer Analysis</h3>
+                        <p>Detailed layer-by-layer image exploration</p>
+                    </div>
+                </div>
+                <div class="column is-3">
+                    <div class="box">
+                        <span class="feature-icon">⭐</span>
+                        <h3 class="title is-5">Strong Community</h3>
+                        <p>Trusted by the contributors around the world</p>
+                    </div>
+                </div>
+                <div class="column is-3">
+                    <div class="box">
+                        <span class="feature-icon">⚡</span>
+                        <h3 class="title is-5">Concurrent Scans</h3>
+                        <p>High-performance scanning capability enabling fast response</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="title is-2 has-text-centered mb-5">Frequently Asked Questions</h2>
+
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="box mb-4">
+                        <h3 class="title is-5">What security tools does HarborGuard integrate?</h3>
+                        <p>HarborGuard integrates six industry-leading security tools: Trivy for comprehensive
+                            vulnerability scanning, Grype for vulnerability matching, Syft for SBOM generation, Dockle
+                            for best practices checking, OSV Scanner for open source vulnerabilities, and Dive for layer
+                            analysis.</p>
+                    </div>
+
+                    <div class="box mb-4">
+                        <h3 class="title is-5">How do I deploy HarborGuard?</h3>
+                        <p>HarborGuard can be deployed using Docker with a simple command: docker run -p 3000:3000
+                            harborguard/harborguard:latest. It supports various configuration options via environment
+                            variables and can be deployed in multiple environments including cloud platforms and
+                            on-premises infrastructure.</p>
+                    </div>
+
+                    <div class="box">
+                        <h3 class="title is-5">What are the system requirements?</h3>
+                        <p>HarborGuard requires Docker to be installed on your system. It needs a PostgreSQL database
+                            for storing scan results and metadata. The platform supports concurrent scans with
+                            configurable timeout settings (5-180 minutes). Recommended minimum: 4GB RAM and 2 CPU cores
+                            for optimal performance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer has-background-dark has-text-white">
+        <div class="content has-text-centered">
+            <p>
+                <strong class="has-text-white">HarborGuard</strong> © 2025. All Rights Reserved.
+                Licensed under AGPL-3.0.
+            </p>
+            <p>
+                Built with <a href="https://bulma.io" class="has-text-info">Bulma</a>
+            </p>
+        </div>
     </footer>
-    <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
+
+    <!-- JavaScript for mobile menu and animated particles -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            if ($navbarBurgers.length > 0) {
+                $navbarBurgers.forEach(el => {
+                    el.addEventListener('click', () => {
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+                    });
+                });
+            }
+
+            // Animated connecting dots
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Set canvas size
+            function setCanvasSize() {
+                const heroSection = canvas.parentElement;
+                canvas.width = heroSection.offsetWidth;
+                canvas.height = heroSection.offsetHeight;
+            }
+            setCanvasSize();
+            window.addEventListener('resize', setCanvasSize);
+
+            // Particle class
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.radius = Math.random() * 2 + 1;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    // Bounce off walls
+                    if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                    if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                    ctx.fill();
+                }
+            }
+
+            // Create particles
+            const particles = [];
+            const particleCount = 50;
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Update and draw particles
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+
+                // Draw connections
+                particles.forEach((particle, i) => {
+                    particles.slice(i + 1).forEach(otherParticle => {
+                        const dx = particle.x - otherParticle.x;
+                        const dy = particle.y - otherParticle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 150) {
+                            ctx.beginPath();
+                            ctx.moveTo(particle.x, particle.y);
+                            ctx.lineTo(otherParticle.x, otherParticle.y);
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${0.2 * (1 - distance / 150)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    });
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        });
+    </script>
+
 </body>
 
 </html>
